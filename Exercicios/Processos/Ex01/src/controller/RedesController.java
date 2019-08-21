@@ -36,7 +36,7 @@ public class RedesController {
 				getAdapters(getProcess(""));
 			}
 		}
-		pingReturn = "Média de ms: " + (int) totalMs/10;
+		pingReturn = "Média de: " + (int) totalMs/10 + "ms\n";
 		return pingReturn;
 	}
 
