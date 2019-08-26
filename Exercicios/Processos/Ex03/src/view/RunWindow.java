@@ -3,21 +3,12 @@ package view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GraphicsEnvironment;
-import java.awt.Image;
-import java.awt.Paint;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,14 +18,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import utils.Utils;
 public class RunWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtProcess;
-
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -48,59 +36,57 @@ public class RunWindow extends JFrame {
 		});
 	}
 
+
 	public RunWindow() {
-		setBackground(new Color(0, 0, 0, 0));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RunWindow.class.getResource("/imgs/vaporwave_run_icon.png")));
 		setResizable(false);
-		BufferedImage img = null;
-		Font font = null;
-		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResource("/font/Roboto-Medium.ttf").openStream());
-			GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			genv.registerFont(font);
-			font = font.deriveFont(14f);
-		} catch (FontFormatException e) {
-			e.printStackTrace();
-		} catch (IOException e2) {
-			e2.printStackTrace();
-		}
+		
+		Font font = Utils.getCustomFont("src/font/Roboto-Medium.ttf", 14f);
+		
 
 		setTitle("Run");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setUndecorated(true);
 		setBounds(100, 100, 496, 223);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		setUndecorated(true);
+		setBackground(new Color(1.0f,1.0f,1.0f,0));
+		
+		JPanel pnControl = new JPanel();
+		pnControl.setBounds(0, 0, 495, 28);
+		contentPane.add(pnControl);
 
 		JPanel pnWindow = new JPanel() {
+			@Override
+			public void setBackground(Color bg) {
+				super.setBackground(new Color(0,0,0,0));
+			}
+			
 			@Override
 			protected void paintComponent(Graphics grphcs) {
 				super.paintComponent(grphcs);
 				Graphics2D g2d = (Graphics2D) grphcs;
 				g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-				GradientPaint gp = new GradientPaint(0, 0, new Color(148, 208, 255,0), getWidth(), getHeight(),
-						new Color(255, 106, 213,0));
+				GradientPaint gp = new GradientPaint(0, 0, new Color(148, 208, 255, 230), getWidth(), getHeight(),
+						new Color(255, 106, 213, 230));
 				g2d.setPaint(gp);
 				g2d.fillRect(0, 0, getWidth(), getHeight());
 
 			}
 		};
-		pnWindow.setBounds(0, 0, 495, 194);
+		
+		pnWindow.setBounds(0, 28, 495, 194);
 		contentPane.add(pnWindow);
 		pnWindow.setLayout(null);
 
 		JLabel lblRunIcon = new JLabel();
 		lblRunIcon.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRunIcon.setBounds(10, 10, 55, 55);
-		try {
-			img = ImageIO.read(new File("./src/imgs/vaporwave_run_icon.png"));
-			Image dimg = img.getScaledInstance(lblRunIcon.getWidth(), lblRunIcon.getHeight(), Image.SCALE_SMOOTH);
-			lblRunIcon.setIcon(new ImageIcon(dimg));
-		} catch (IOException e) {
-			lblRunIcon.setIcon(new ImageIcon(RunWindow.class.getResource("/imgs/vaporwave_run_icon.png")));
-		}
+		Utils.getCustomIconForLabel(lblRunIcon, "/imgs/vaporwave_run_icon.png");
+		
 		pnWindow.add(lblRunIcon);
 
 		JLabel lblAbrir = new JLabel("Abrir:");
@@ -139,4 +125,6 @@ public class RunWindow extends JFrame {
 		txtAreaTitle.setBounds(75, 20, 411, 45);
 		pnWindow.add(txtAreaTitle);
 	}
+
+
 }

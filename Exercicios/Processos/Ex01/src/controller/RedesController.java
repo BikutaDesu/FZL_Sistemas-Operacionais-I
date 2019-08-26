@@ -45,7 +45,7 @@ public class RedesController {
 		try {
 			String row = buffer.readLine();
 			while (row != null) {
-				if (row.contains("Reply")) {
+				if (row.contains("=")) {
 					String time = row;
 					row = row.substring(row.indexOf("="));
 					row = row.replace("=", "");
