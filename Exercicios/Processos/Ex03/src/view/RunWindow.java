@@ -67,7 +67,7 @@ public class RunWindow extends JFrame {
 
 		setTitle("Run");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		setUndecorated(true);
 		setBounds(100, 100, 496, 223);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

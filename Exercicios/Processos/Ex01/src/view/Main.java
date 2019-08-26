@@ -15,7 +15,7 @@ public class Main {
 			System.out.println("----------Ex 01----------");
 			System.out.println("Olá, digite o número correspondente a ação do menu");
 			System.out.println("1 - ping");
-			System.out.println("2 - lista os IPs");
+			System.out.println("2 - listar os IPs");
 			System.out.println("0 - sair");
 			System.out.print("escolha: ");
 			opc = sc.nextInt();

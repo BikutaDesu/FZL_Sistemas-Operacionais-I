@@ -71,12 +71,12 @@ public class RedesController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return process;
 	}
 
 	public BufferedReader getProcess(String processName) {
-		InputStream flow = callProcess(processName).getInputStream();
+		Process process = callProcess(processName);
+		InputStream flow = process.getInputStream();
 		InputStreamReader reader = new InputStreamReader(flow);
 		BufferedReader buffer = new BufferedReader(reader);
 		return buffer;
