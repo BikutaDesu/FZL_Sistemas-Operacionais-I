@@ -57,7 +57,19 @@ public class RunWindow extends JFrame {
 		
 		JPanel pnControl = new JPanel();
 		pnControl.setBounds(0, 0, 495, 28);
+		pnControl.setBackground(new Color(30,30,30));
 		contentPane.add(pnControl);
+		pnControl.setLayout(null);
+		
+		JLabel lblClose = new JLabel("close");
+		lblClose.setBounds(467, 0, 28, 28);
+		Utils.getCustomIconForLabel(lblClose, "/imgs/vaporwave_close_icon.png");
+		pnControl.add(lblClose);
+		
+		JLabel lblMin = new JLabel("min");
+		lblMin.setBounds(429, 0, 28, 28);
+		Utils.getCustomIconForLabel(lblMin, "/imgs/vaporwave_min_icon.png");
+		pnControl.add(lblMin);
 
 		JPanel pnWindow = new JPanel() {
 			@Override
@@ -125,6 +137,4 @@ public class RunWindow extends JFrame {
 		txtAreaTitle.setBounds(75, 20, 411, 45);
 		pnWindow.add(txtAreaTitle);
 	}
-
-
 }
