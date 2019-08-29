@@ -20,7 +20,7 @@ public class RunController implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		callProcess(txtProcess.getText());
 	}
 
 	private void closeWindow() {
@@ -30,6 +30,7 @@ public class RunController implements ActionListener{
 	private void callProcess(String process) {
 		try {
 			Runtime.getRuntime().exec(process);
+			frame.dispose();
 		} catch (IOException e) {
 			if (e.getMessage().contains("740")) {
 //				cmd /c process - /c -> credenciais
@@ -39,6 +40,7 @@ public class RunController implements ActionListener{
 				buffer.append(process);
 				try {
 					Runtime.getRuntime().exec(buffer.toString());
+					frame.dispose();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Não foi possível executar o processo!", "ERRO!!", JOptionPane.ERROR_MESSAGE);
 				}

@@ -18,11 +18,15 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import controller.CancelController;
+import controller.RunController;
+import controller.SearchController;
 import utils.Utils;
 public class RunWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtProcess;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -43,7 +47,6 @@ public class RunWindow extends JFrame {
 		
 		Font font = Utils.getCustomFont("src/font/Roboto-Medium.ttf", 14f);
 		
-
 		setTitle("Run");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 496, 223);
@@ -55,22 +58,9 @@ public class RunWindow extends JFrame {
 		setUndecorated(true);
 		setBackground(new Color(1.0f,1.0f,1.0f,0));
 		
-		JPanel pnControl = new JPanel();
-		pnControl.setBounds(0, 0, 495, 28);
-		pnControl.setBackground(new Color(30,30,30));
+		JPanel pnControl = new TopBar(this);
 		contentPane.add(pnControl);
-		pnControl.setLayout(null);
 		
-		JLabel lblClose = new JLabel("close");
-		lblClose.setBounds(467, 0, 28, 28);
-		Utils.getCustomIconForLabel(lblClose, "/imgs/vaporwave_close_icon.png");
-		pnControl.add(lblClose);
-		
-		JLabel lblMin = new JLabel("min");
-		lblMin.setBounds(429, 0, 28, 28);
-		Utils.getCustomIconForLabel(lblMin, "/imgs/vaporwave_min_icon.png");
-		pnControl.add(lblMin);
-
 		JPanel pnWindow = new JPanel() {
 			@Override
 			public void setBackground(Color bg) {
@@ -115,16 +105,23 @@ public class RunWindow extends JFrame {
 		JButton btnOk = new JButton("OK");
 		btnOk.setBounds(166, 147, 89, 23);
 		btnOk.setFont(font);
+		RunController runController = new RunController(this, txtProcess);
+		btnOk.addActionListener(runController);
+		txtProcess.addActionListener(runController);
 		pnWindow.add(btnOk);
 
 		JButton btnProcurar = new JButton("Procurar...");
 		btnProcurar.setBounds(380, 147, 105, 23);
 		btnProcurar.setFont(font);
+		SearchController searchController = new SearchController(txtProcess);
+		btnProcurar.addActionListener(searchController);
 		pnWindow.add(btnProcurar);
 
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(265, 147, 105, 23);
 		btnCancelar.setFont(font);
+		CancelController cancelController = new CancelController(this);
+		btnCancelar.addActionListener(cancelController);
 		pnWindow.add(btnCancelar);
 
 		JTextArea txtAreaTitle = new JTextArea();
