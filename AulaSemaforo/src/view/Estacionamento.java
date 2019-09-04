@@ -1,6 +1,8 @@
-package controller;
+package view;
 
 import java.util.concurrent.Semaphore;
+
+import controller.ThreadCarro;
 
 public class Estacionamento {
 
