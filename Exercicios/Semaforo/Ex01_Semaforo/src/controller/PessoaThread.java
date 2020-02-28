@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.Random;
 import java.util.concurrent.Semaphore;
 
 public class PessoaThread extends Thread {
@@ -11,8 +10,6 @@ public class PessoaThread extends Thread {
 	private int distPer;
 
 	private Semaphore semaphore;
-
-	private Random random;
 
 	public PessoaThread(int idThread, Semaphore semaphore) {
 		this.idThread = idThread;
@@ -26,11 +23,11 @@ public class PessoaThread extends Thread {
 	}
 
 	private void andar() {
-		
+
 		while (distPer < distMax) {
 			int dist = (int) (Math.random() * 4);
 			float temp = (float) (Math.random() * 2);
-			
+
 			distPer += dist;
 
 			System.out.printf("Pessoa %d andou %d metros\n", idThread, distPer);
@@ -49,7 +46,7 @@ public class PessoaThread extends Thread {
 				abrirPorta();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
-			}finally {
+			} finally {
 				semaphore.release();
 			}
 		}

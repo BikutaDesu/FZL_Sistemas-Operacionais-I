@@ -1,6 +1,6 @@
 package view;
 
-import Controller.ThreadNumero;
+import controller.ThreadNumero;
 
 public class Principal {
 

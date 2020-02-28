@@ -11,10 +11,18 @@ public class ProcController {
 		super();
 	}
 	
-	public String getOS(){
-		String os = System.getProperty("os.name");
-		return os;
+	public String getOS() {
+		return System.getProperty("os.name");
 	}
+	
+	public String getOsVersion() {
+		return System.getProperty("os.version");
+	}
+	
+	public String getOsArch() {
+		return System.getProperty("os.arch");
+	}
+	
 	
 	public void callProcess(String process) {
 		try {
@@ -29,9 +37,11 @@ public class ProcController {
 				try {
 					Runtime.getRuntime().exec(buffer.toString());
 				} catch (IOException e1) {
+					System.err.println("Erro ao abrir o processo, verifique o nome e tente novamente...\n");
 					e1.printStackTrace();
 				}
 			}else {
+				System.err.println("Erro ao abrir o processo, verifique o nome e tente novamente...");
 				e.printStackTrace();
 			}
 			
@@ -79,6 +89,29 @@ public class ProcController {
 		
 		callProcess(buffer.toString());
 		
+	}
+	
+	public void readProcess(String processName) {
+		try {
+			Process process = Runtime.getRuntime().exec(processName);
+			InputStream inputStream = process.getInputStream();
+			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+			String row = bufferedReader.readLine();
+			
+			while (row != null) {
+				System.out.println(row);
+				row = bufferedReader.readLine();
+			}
+			
+			bufferedReader.close();
+			inputStreamReader.close();
+			inputStream.close();
+		
+		} catch (IOException e) {
+			System.err.println("Erro ao abrir o processo, verifique o nome e tente novamente...");
+			e.printStackTrace();
+		}
 	}
 
 }
