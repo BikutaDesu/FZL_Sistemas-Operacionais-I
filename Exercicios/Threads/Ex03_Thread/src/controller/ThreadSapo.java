@@ -60,8 +60,8 @@ public class ThreadSapo extends Thread{
 //			}
 		}
 		
-		System.out.printf("O Sapo %d chegou ao final! %dยบ colocado\n", idSapo, posicao);
-		lblListaColocados[idSapo].setText(posicao + "ยบ");
+		System.out.printf("O Sapo %d chegou ao final! %dบ colocado\n", idSapo, posicao);
+		lblListaColocados[idSapo].setText(posicao + "บ");
 		posicao++;
 		if (posicao > 5 ) {
 			btnIniciarCorrida.setEnabled(true);

@@ -26,7 +26,7 @@ public class Principal extends JFrame {
 	private JLabel[] lblSapos = new JLabel[5];
 	
 	private int windowWidth = 1000;
-	private int windowHeight = 600;
+	private int windowHeight = 640;
 	
 	private Image[] sapoImageList = new Image[6];
 	
@@ -75,7 +75,7 @@ public class Principal extends JFrame {
 		lblTempoCorrida.setFont(new Font("Montserrat", Font.BOLD, 18));
 		contentPane.add(lblTempoCorrida);
 
-		lblClassificacao = new JLabel("ClassificaÃ§Ã£o");
+		lblClassificacao = new JLabel("Classificação");
 		lblClassificacao.setBounds(860, 380, 140, 25);
 		lblClassificacao.setFont(new Font("Montserrat", Font.BOLD, 18));
 		contentPane.add(lblClassificacao);

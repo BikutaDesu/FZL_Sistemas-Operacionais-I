@@ -21,7 +21,6 @@ public class ImageUtils {
 			e.printStackTrace();
 			return null;
 		}
-		
 	}
 	
 }
