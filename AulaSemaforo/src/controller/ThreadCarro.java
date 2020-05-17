@@ -25,14 +25,14 @@ public class ThreadCarro extends Thread{
 			e.printStackTrace();
 		} finally {
 			semaforo.release();
+			sairCarro();
 		}
-		sairCarro();
 	}
 	
 	private void moverCarro() {
-		int distFinal = (int)((Math.random() * 1001) + 1000);
+		int distFinal = (int)((Math.random() * 2001) + 1000);
 		int variacaoDist = 100;
-		int tempo = 100;
+		int tempo = 30;
 		int distPercorrida = 0;
 		
 		while(distPercorrida < distFinal) {
@@ -44,15 +44,15 @@ public class ThreadCarro extends Thread{
 				e.printStackTrace();
 			}
 
-			System.out.printf("Carro %d já andou %d m.\n", idCarro, distPercorrida);
+			System.out.printf("Carro #%d já andou %d m.\n", idCarro, distPercorrida);
 		}
 		posChegada++;
-		System.out.printf("O carro %d foi o %d a chegar\n", idCarro, posChegada);
+		System.out.printf("O carro #%d foi o %d° a chegar\n", idCarro, posChegada);
 	}
 	
 	private void pararCarro() {
-		System.out.printf("O carro %d estacionou!\n", idCarro);
-		int tempoParado = (int)((Math.random() * 501) + 500);
+		System.out.printf("O carro #%d estacionou!\n", idCarro);
+		int tempoParado = (int)((Math.random() * 2001) + 2000);
 		
 		try {
 			Thread.sleep(tempoParado);
@@ -62,6 +62,7 @@ public class ThreadCarro extends Thread{
 	}
 	
 	private void sairCarro() {
-		System.out.printf("O carro %d foi o %d a sair.\n", idCarro, posSaida);
+		posSaida++;
+		System.out.printf("O carro %d foi o %d° a sair.\n", idCarro, posSaida);
 	}
 }

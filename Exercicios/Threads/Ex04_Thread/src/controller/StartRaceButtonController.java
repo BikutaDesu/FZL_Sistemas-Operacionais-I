@@ -27,8 +27,8 @@ public class StartRaceButtonController implements ActionListener{
 		btnStartRace.setEnabled(false);
 		btnSelectCharacters.setEnabled(false);
 		for (int i = 0; i < charactersInRace.length; i++) {
-			charactersInRace[i].start();
 			charactersInRace[i].setPlace(0);
+			charactersInRace[i].start();
 		}
 	}
 

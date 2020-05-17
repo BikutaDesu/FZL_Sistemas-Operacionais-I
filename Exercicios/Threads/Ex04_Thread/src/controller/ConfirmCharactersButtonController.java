@@ -30,7 +30,7 @@ public class ConfirmCharactersButtonController implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		btnStartRace.setVisible(true);
-		
+		mainWindow.loadCharacters();
 		int[] selectedCharacters = new int[3];
 		int selectedCharactersIndex = 0;
 		int yLabelOffset = 0;
